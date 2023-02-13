@@ -1,0 +1,36 @@
+<h2>Products</h2>
+
+<!-- structural directive - shape the DOM by adding, removing and manipulating elements 
+  here it repeats for each product -->
+<div *ngFor="let product of products">
+  <h3>
+    <!-- title adds a hover which describes the link-->
+    <a [title]="product.name + ' details'"> 
+      {{ product.name }} 
+    </a>
+  </h3>
+  <!--only display if decription exists-->
+  <p *ngIf="product.description">
+    Description: {{ product.description}}
+  </p>
+
+  <!--Event binding uses ( ), around the event, (click) to bind action to method in
+    product-list.component.ts-->
+  <button type="button" (click)="share()">
+    Share
+  </button>
+
+<!-- identifies the component and display it as child, pass current product as input to component using property binding. -->
+<!-- bind <app-product-alerts> to the onNotify() method of the product list component -->
+  <app-product-alerts 
+  [product]="product"
+  (notify)="onNotify()">
+  </app-product-alerts>
+</div>
+
+
+<!-- 
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at https://angular.io/license
+-->

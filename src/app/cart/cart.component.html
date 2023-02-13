@@ -1,0 +1,12 @@
+<h3>Cart</h3>
+
+<!-- Add a link from the CartComponent view to the ShippingComponent view. -->
+<p>
+  <a routerLink="/shipping">Shipping Prices</a>
+</p>
+
+<!-- use <div> with an *ngFor to display each of cart items with its name and price -->
+<div class="cart-item" *ngFor="let item of items">
+  <span>{{ item.name }}</span>
+  <span>{{ item.price | currency }}</span>
+</div>

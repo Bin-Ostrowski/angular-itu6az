@@ -4,30 +4,28 @@
   here it repeats for each product -->
 <div *ngFor="let product of products">
   <h3>
-    <!-- title adds a hover which describes the link-->
-    <a [title]="product.name + ' details'"> 
-      {{ product.name }} 
+    <!-- a = anchor, title adds a hover which describes the link -->
+    <!-- add router to anchor with product.id as parameter -->
+    <!--RouterLink directive helps you customize the anchor element. In this case, the route, or URL, contains one fixed segment, /products. The final segment is variable, inserting the id property of the current product.  -->
+    <a
+      [title]="product.name + ' details'"
+      [routerLink]="['/products', product.id]"
+    >
+      {{ product.name }}
     </a>
   </h3>
   <!--only display if decription exists-->
-  <p *ngIf="product.description">
-    Description: {{ product.description}}
-  </p>
+  <p *ngIf="product.description">Description: {{ product.description }}</p>
 
   <!--Event binding uses ( ), around the event, (click) to bind action to method in
     product-list.component.ts-->
-  <button type="button" (click)="share()">
-    Share
-  </button>
+  <button type="button" (click)="share()">Share</button>
 
-<!-- identifies the component and display it as child, pass current product as input to component using property binding. -->
-<!-- bind <app-product-alerts> to the onNotify() method of the product list component -->
-  <app-product-alerts 
-  [product]="product"
-  (notify)="onNotify()">
+  <!-- identifies the component and display it as child, pass current product as input to component using property binding. -->
+  <!-- bind <app-product-alerts> to the onNotify() method of the product list component -->
+  <app-product-alerts [product]="product" (notify)="onNotify()">
   </app-product-alerts>
 </div>
-
 
 <!-- 
 Copyright Google LLC. All Rights Reserved.
